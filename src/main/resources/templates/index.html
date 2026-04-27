@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Service</title>
+    <style>
+        body { font-family: Arial; text-align: center; }
+        .card { padding: 20px; margin: 10px; border: 1px solid #ccc; display: inline-block; }
+    </style>
+</head>
+<body>
+
+<h1>Product Service</h1>
+
+<div th:each="product : ${products}" class="card">
+    <h3 th:text="${product.name}"></h3>
+</div>
+
+</body>
+</html>
