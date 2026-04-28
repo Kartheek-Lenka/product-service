@@ -26,5 +26,19 @@ pipeline {
                 sh 'docker images'
             }
         }
+
+        stage('Login to ECR') {
+            steps {
+                withCredentials([[
+                    $class: 'AmazonWebServicesCredentialsBinding',
+                    credentialsId: 'aws-creds'
+                ]]) {
+                    sh '''
+                    aws ecr get-login-password --region ap-south-1 \
+                    | docker login --username AWS --password-stdin <your-account-id>.dkr.ecr.ap-south-1.amazonaws.com
+                    '''
+                }
+            }
+        }
     }
 }
